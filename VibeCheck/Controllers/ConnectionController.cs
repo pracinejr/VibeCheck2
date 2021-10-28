@@ -39,6 +39,7 @@ namespace VibeCheck.Controllers
         {
             var currentUser = GetCurrentUser();
             List<Connection> connections = _connectionRepo.GetUsersConnections(currentUser.Id);
+            connection.DateCreated = DateTime.Now;
             if (connections.Any(b => b.AcquaintanceId == connection.AcquaintanceId))
             {
                 ModelState.AddModelError("", "Connection already exists.");

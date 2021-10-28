@@ -2,7 +2,7 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import { getToken } from "./authManager";
 
-const baseUrl = "/api/connection";
+const baseUrl = "/api/venue";
 
 export const getAllVenues = () => {
   return getToken().then((token) => {
@@ -42,7 +42,7 @@ export const getVenueById = (id) => {
   });
 };
 
-export const addVenue = () => {
+export const addVenue = (venue) => {
   return getToken().then((token) => {
     return fetch(`${baseUrl}`, {
       method: "POST",
@@ -78,9 +78,9 @@ export const deleteVenue = (id) => {
   });
 };
 
-export const updateVenue = (id) => {
+export const updateVenue = (venue) => {
   return getToken().then((token) => {
-    return fetch(`${baseUrl}/${id}`, {
+    return fetch(`${baseUrl}/${venue.id}`, {
       method: "PUT",
       headers: {
         Authorization: `Bearer ${token}`,

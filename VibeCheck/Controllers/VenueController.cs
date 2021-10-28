@@ -20,7 +20,7 @@ namespace VibeCheck.Controllers
             _venueRepo = venueRepository;
         }
 
-        [HttpGet]
+        [HttpGet("GetAllVenues")]
         public IActionResult Get()
         {
             return Ok(_venueRepo.GetAllVenues());

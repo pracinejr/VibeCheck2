@@ -4,9 +4,9 @@ import { getToken } from "./authManager";
 
 const baseUrl = "/api/connection";
 
-export const getConnectionsByUserId = () => {
+export const getAllVenues = () => {
   return getToken().then((token) => {
-    return fetch(`${baseUrl}/GetMyConnections`, {
+    return fetch(`${baseUrl}/GetAllVenues`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -16,16 +16,16 @@ export const getConnectionsByUserId = () => {
         return resp.json();
       } else {
         throw new Error(
-          "An unknown error occured. Please try to get connections again."
+          "An unkown error occured.Please try to get venues again."
         );
       }
     });
   });
 };
 
-export const getConnectionsById = (id) => {
+export const getVenueById = (id) => {
   return getToken().then((token) => {
-    return fetch(`${baseUrl}/GetById/${id}`, {
+    return fetch(`${baseUrl}/${id}`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -35,22 +35,22 @@ export const getConnectionsById = (id) => {
         return resp.json();
       } else {
         throw new Error(
-          "An unknown error occured. Please try to get connections again."
+          "An unkown error occured.Please try to get the venue again."
         );
       }
     });
   });
 };
 
-export const addConnection = (connection) => {
+export const addVenue = () => {
   return getToken().then((token) => {
-    return fetch(baseUrl, {
+    return fetch(`${baseUrl}`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(connection),
+      body: JSON.stringify(venue),
     }).then((resp) => {
       if (resp.ok) {
         return resp.json();
@@ -58,22 +58,35 @@ export const addConnection = (connection) => {
         throw new Error("Unauthorized");
       } else {
         throw new Error(
-          "An unknown error occurred while trying to save a new connection."
+          "An unkown error occured.Please try to add venue again."
         );
       }
     });
   });
 };
 
-export const updateConnection = (connection) => {
+export const deleteVenue = (id) => {
   return getToken().then((token) => {
-    return fetch(`${baseUrl}/${connection.id}`, {
+    return fetch(`${baseUrl}/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(id),
+    });
+  });
+};
+
+export const updateVenue = (id) => {
+  return getToken().then((token) => {
+    return fetch(`${baseUrl}/${id}`, {
       method: "PUT",
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(connection),
+      body: JSON.stringify(venue),
     }).then((resp) => {
       if (resp.ok) {
         return resp.json();
@@ -81,22 +94,9 @@ export const updateConnection = (connection) => {
         throw new Error("Unauthorized");
       } else {
         throw new Error(
-          "An unknown error occurred while trying to update this connection."
+          "An unkown error occured.Please try to get connections again."
         );
       }
     });
   });
 };
-
-// export const deleteConnection = (id) => {
-//   return getToken().then((token) => {
-//     return fetch(`${baseUrl}/${id}`, {
-//       method: "DELETE",
-//       headers: {
-//         Authorization: `Bearer ${token}`,
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify(id),
-//     });
-//   });
-// };

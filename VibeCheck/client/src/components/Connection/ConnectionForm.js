@@ -10,14 +10,19 @@ import {
 } from "../../modules/ConnectionManager";
 import { getAllUsers } from "../../modules/UserManager";
 import { getAllVenues } from "../../modules/VenueManager";
+import { getUsersByFirebaseUserId } from "../../modules/UserManager";
+import firebase from "firebase";
 
 export const ConnectionForm = () => {
   const history = useHistory();
   const { connectionId } = useParams();
   const [connection, setConnection] = useState({});
-  // const user = firebase.auth().currentUser
+  const [connections, setConnections] = useState([]);
+  const userFirebaseId = firebase.auth().currentUser.uid;
   const [users, setUsers] = useState([]);
   const [venues, setVenues] = useState([]);
+  const [user, setUser] = useState({});
+  // const [ didSubmit, setDidSubmit ] = useState(false);
 
   const handleCancel = () => {
     history.push("/connection");
@@ -31,7 +36,10 @@ export const ConnectionForm = () => {
   };
 
   useEffect(() => {
-    getConnectionsByUserId().then(setConnection);
+    getUsersByFirebaseUserId(userFirebaseId).then(setUser);
+    getAllUsers().then(setUsers);
+    getAllVenues().then(setVenues);
+    getConnectionsByUserId().then(setConnections);
     if (connectionId) {
       getConnectionsById(connectionId).then(setConnection);
     }
@@ -43,7 +51,13 @@ export const ConnectionForm = () => {
         history.push(`/connection/${connection.id}`)
       );
     } else {
-      addConnection(connection).then(history.push("/connection"));
+      addConnection({
+        userId: user.id,
+        venueId: parseInt(connection.venueId),
+        mutualFriendId: parseInt(connection.mutualFriendId),
+        acquaintanceId: parseInt(connection.acquaintanceId),
+        notes: connection.notes,
+      }).then(history.push("/connection"));
     }
   };
 
@@ -52,9 +66,9 @@ export const ConnectionForm = () => {
       <Form className="new-connection-form">
         <h1>Add New onnection</h1>
         <FormGroup>
-          <Label for="connectionMutualFriend">Mutual Friend</Label>
+          <Label for="mutualFriend">Mutual Friend</Label>
           <Input
-            id="connectionMutualFriend"
+            id="mutualFriendId"
             type="select"
             name="microscopeId"
             onChange={handleControlledInputChange}
@@ -71,26 +85,29 @@ export const ConnectionForm = () => {
             {users.map((user) => {
               return (
                 <option
-                  id="mutualFriendOption"
+                  id="mutualFriendId"
                   name="mutualFriendOption"
                   value={user.id}
                   onChange={handleControlledInputChange}
-                ></option>
+                >
+                  {user.name}
+                </option>
               );
             })}
+            {console.log(connection, venues)}
           </Input>
         </FormGroup>
         <FormGroup>
-          <Label for="connectionAcquaintance">Acquaintance</Label>
+          <Label for="acquaintance">Acquaintance</Label>
           <Input
-            id="connectionAcquaintance"
+            id="acquaintanceId"
             type="select"
             name="acquaintanceId"
             onChange={handleControlledInputChange}
           >
             <option
               option
-              id="AcquaintanceOption"
+              id="AcquaintanceId"
               name="AcquaintanceOption"
               onChange={handleControlledInputChange}
             >
@@ -100,26 +117,28 @@ export const ConnectionForm = () => {
             {users.map((user) => {
               return (
                 <option
-                  id="AcquaintanceOption"
+                  id="acquaintanceId"
                   name="AcquaintanceOption"
                   value={user.id}
                   onChange={handleControlledInputChange}
-                ></option>
+                >
+                  {user.name}
+                </option>
               );
             })}
           </Input>
         </FormGroup>
         <FormGroup>
-          <Label for="connectionVenue">Venue</Label>
+          <Label for="venue">Venue</Label>
           <Input
-            id="connectionVenue"
+            id="venueId"
             type="select"
-            name="microscopeId"
+            name="venue"
             onChange={handleControlledInputChange}
           >
             <option
               option
-              id="venue"
+              id="venueId"
               name="venue"
               onChange={handleControlledInputChange}
             >
@@ -129,19 +148,21 @@ export const ConnectionForm = () => {
             {venues.map((venue) => {
               return (
                 <option
-                  id="venue"
+                  id="venueId"
                   name="venue"
                   value={venue.id}
                   onChange={handleControlledInputChange}
-                ></option>
+                >
+                  {venue.name}
+                </option>
               );
             })}
           </Input>
         </FormGroup>
         <FormGroup>
-          <Label for="connectionNotes">Notes</Label>
+          <Label for="Notes">Notes</Label>
           <Input
-            id="connectionNotes"
+            id="notes"
             type="text"
             name="notes"
             onChange={handleControlledInputChange}

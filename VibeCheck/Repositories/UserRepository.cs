@@ -74,12 +74,10 @@ namespace VibeCheck.Repositories
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                                SELECT u.id, u.FirebaseUserId, u.FirstName, u.LastName, u.DisplayName, u.Email,
-                                    u.CreateDateTime, u.ImageLocation, u.UserTypeId,
-                                    ut.[Name] AS UserTypeName
-                                FROM User u
-                                LEFT JOIN UserType ut ON u.UserTypeId = ut.id
-                                ORDER BY DisplayName
+                                SELECT u.id, u.FirebaseUserId, u.Name, u.Email,
+                                       u.ImageLocation
+                                FROM [User] u
+                                ORDER BY Name
                                 ";
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {

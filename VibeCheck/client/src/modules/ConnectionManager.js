@@ -67,24 +67,29 @@ export const addConnection = (connection) => {
 
 export const updateConnection = (connection) => {
   return getToken().then((token) => {
-    return fetch(`${baseUrl}/${connection.id}`, {
+    return fetch(`${baseUrl}/edit/${connection.id}`, {
       method: "PUT",
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify(connection),
-    }).then((resp) => {
-      if (resp.ok) {
-        return resp.json();
-      } else if (resp.status === 401) {
-        throw new Error("Unauthorized");
-      } else {
-        throw new Error(
-          "An unknown error occurred while trying to update this connection."
-        );
-      }
-    });
+    }).then(
+      (resp) =>
+        // {
+        getConnectionsByUserId()
+
+      // if (resp.ok) {
+      //   return resp.json();
+      // } else if (resp.status === 401) {
+      //   throw new Error("Unauthorized");
+      // } else {
+      //   throw new Error(
+      //     "An unknown error occurred while trying to update this connection."
+      //   );
+      // }
+      // }
+    );
   });
 };
 

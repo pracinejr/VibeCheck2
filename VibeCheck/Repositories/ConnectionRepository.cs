@@ -204,7 +204,7 @@ namespace VibeCheck.Repositories
                     DbUtils.AddParameter(cmd, "@VenueId", connection.VenueId);
                     DbUtils.AddParameter(cmd, "@MutualFriendId", connection.MutualFriendId);
                     DbUtils.AddParameter(cmd, "@AcquaintanceId", connection.AcquaintanceId);
-                    DbUtils.AddParameter(cmd, "@Notes", connection.Id);
+                    DbUtils.AddParameter(cmd, "@Notes", connection.Notes);
                     DbUtils.AddParameter(cmd, "Id", connection.Id);
 
                     cmd.ExecuteNonQuery();

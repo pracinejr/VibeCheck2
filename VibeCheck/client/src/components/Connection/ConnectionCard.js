@@ -37,7 +37,7 @@ export const ConnectionCard = ({ connection }) => {
             </div>
             <div className="Connection-buttons">
               <Button className="Connection-btn" onClick={handleDetails}>
-                Edit Connection
+                View Details
               </Button>
             </div>
           </CardBody>

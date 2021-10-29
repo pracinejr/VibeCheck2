@@ -15,8 +15,14 @@ import firebase from "firebase";
 
 export const ConnectionForm = () => {
   const history = useHistory();
-  const { connectionId } = useParams();
-  const [connection, setConnection] = useState({});
+  const { id } = useParams();
+  const [connection, setConnection] = useState({
+    userId: "",
+    venueId: "",
+    mutualFriendId: "",
+    acquaintanceId: "",
+    notes: "",
+  });
   const [connections, setConnections] = useState([]);
   const userFirebaseId = firebase.auth().currentUser.uid;
   const [users, setUsers] = useState([]);
@@ -37,19 +43,24 @@ export const ConnectionForm = () => {
 
   useEffect(() => {
     getUsersByFirebaseUserId(userFirebaseId).then(setUser);
-    getAllUsers().then(setUsers);
+    getAllUsers().then((users) => setUsers(users));
     getAllVenues().then(setVenues);
     getConnectionsByUserId().then(setConnections);
-    if (connectionId) {
-      getConnectionsById(connectionId).then(setConnection);
+    if (id) {
+      getConnectionsById(id).then(setConnection);
     }
   }, []);
 
   const handleSaveConnection = () => {
-    if (connectionId) {
-      updateConnection(connection).then(
-        history.push(`/connection/${connection.id}`)
-      );
+    if (id) {
+      updateConnection({
+        userId: connection.userId,
+        venueId: connection.venueId,
+        mutualFriendId: parseInt(connection.mutualFriendId),
+        acquaintanceId: parseInt(connection.acquaintanceId),
+        notes: connection.notes,
+        id: parseInt(connection.id),
+      }).then(history.push(`/connection/detail/${id}`));
     } else {
       addConnection({
         userId: user.id,
@@ -64,19 +75,19 @@ export const ConnectionForm = () => {
   return (
     <>
       <Form className="new-connection-form">
-        <h1>Add New onnection</h1>
+        {id ? <h1>Update Connection</h1> : <h1>Add New Connection</h1>}
         <FormGroup>
-          <Label for="mutualFriend">Mutual Friend</Label>
+          <Label htmlFor="mutualFriend">Mutual Friend</Label>
           <Input
-            id="mutualFriendId"
+            id="mutualFriend"
             type="select"
-            name="microscopeId"
+            name="mutualFriend"
             onChange={handleControlledInputChange}
           >
             <option
               option
-              id="mutualFriendOption"
-              name="mutualFriendOption"
+              id="mutualFriend"
+              name="mutualFriend"
               onChange={handleControlledInputChange}
             >
               {" "}
@@ -85,10 +96,11 @@ export const ConnectionForm = () => {
             {users.map((user) => {
               return (
                 <option
-                  id="mutualFriendId"
-                  name="mutualFriendOption"
+                  id="mutualFriend"
+                  name="mutualFriend"
                   value={user.id}
                   onChange={handleControlledInputChange}
+                  selected={connection.mutualFriendId == user.id ? true : false}
                 >
                   {user.name}
                 </option>
@@ -121,6 +133,7 @@ export const ConnectionForm = () => {
                   name="AcquaintanceOption"
                   value={user.id}
                   onChange={handleControlledInputChange}
+                  selected={connection.acquaintanceId == user.id ? true : false}
                 >
                   {user.name}
                 </option>
@@ -149,9 +162,11 @@ export const ConnectionForm = () => {
               return (
                 <option
                   id="venueId"
+                  defaultValue={connection?.venueId}
                   name="venue"
                   value={venue.id}
                   onChange={handleControlledInputChange}
+                  selected={connection.venueId == venue.id ? true : false}
                 >
                   {venue.name}
                 </option>
@@ -170,7 +185,7 @@ export const ConnectionForm = () => {
           />
         </FormGroup>
         <FormGroup className="connection-buttons">
-          {connectionId ? (
+          {id ? (
             <Button className="connection-btn" onClick={handleSaveConnection}>
               Update Connection
             </Button>

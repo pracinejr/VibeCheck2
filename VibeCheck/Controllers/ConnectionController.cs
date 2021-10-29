@@ -60,7 +60,7 @@ namespace VibeCheck.Controllers
             return Ok(_connectionRepo.GetConnectionById(id));
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("edit/{id}")]
         public IActionResult Put(int id, Connection connection)
         {
             if (id != connection.Id)

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { NavLink as RRNavLink } from "react-router-dom";
 import {
   Collapse,
@@ -7,9 +7,9 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink
-} from 'reactstrap';
-import { logout } from '../modules/authManager';
+  NavLink,
+} from "reactstrap";
+import { logout } from "../modules/authManager";
 
 export default function Header({ isLoggedIn }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,65 +18,87 @@ export default function Header({ isLoggedIn }) {
   return (
     <div>
       <Navbar color="light" light expand="md">
-        <NavbarBrand tag={RRNavLink} to="/">VibeCheck</NavbarBrand>
+        <NavbarBrand tag={RRNavLink} to="/">
+          VibeCheck
+        </NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
-            { /* When isLoggedIn === true, we will render the Home link */}
-            {isLoggedIn &&
+            {/* When isLoggedIn === true, we will render the Home link */}
+            {isLoggedIn && (
               <NavItem>
-                <NavLink tag={RRNavLink} to="/">Home</NavLink>
+                <NavLink tag={RRNavLink} to="/">
+                  Home
+                </NavLink>
               </NavItem>
-            }
+            )}
           </Nav>
           <Nav className="mr-auto" navbar>
-            {isLoggedIn &&
+            {isLoggedIn && (
               <NavItem>
-                <NavLink tag={RRNavLink} to="/connection">Connections</NavLink>
+                <NavLink tag={RRNavLink} to="/connection">
+                  Connections
+                </NavLink>
               </NavItem>
-            }
+            )}
           </Nav>
           <Nav className="mr-auto" navbar>
-            {isLoggedIn &&
+            {isLoggedIn && (
               <NavItem>
-                <NavLink tag={RRNavLink} to="/bands">Bands</NavLink>
+                <NavLink tag={RRNavLink} to="/bands">
+                  Bands
+                </NavLink>
               </NavItem>
-            }
+            )}
           </Nav>
           <Nav className="mr-auto" navbar>
-            {isLoggedIn &&
+            {isLoggedIn && (
               <NavItem>
-                <NavLink tag={RRNavLink} to="/venues">Venues</NavLink>
+                <NavLink tag={RRNavLink} to="/venues">
+                  Venues
+                </NavLink>
               </NavItem>
-            }
+            )}
           </Nav>
           <Nav className="mr-auto" navbar>
-            {isLoggedIn &&
+            {isLoggedIn && (
               <NavItem>
-                <NavLink tag={RRNavLink} to="/users" exact>Users</NavLink>
+                <NavLink tag={RRNavLink} to="/users" exact>
+                  Users
+                </NavLink>
               </NavItem>
-            }
+            )}
           </Nav>
-          
+
           <Nav navbar>
-            {isLoggedIn &&
+            {isLoggedIn && (
               <>
                 <NavItem>
-                  <a aria-current="page" className="nav-link"
-                    style={{ cursor: "pointer" }} onClick={logout}>Logout</a>
+                  <a
+                    aria-current="page"
+                    className="nav-link"
+                    style={{ cursor: "pointer" }}
+                    onClick={logout}
+                  >
+                    Logout
+                  </a>
                 </NavItem>
               </>
-            }
-            {!isLoggedIn &&
+            )}
+            {!isLoggedIn && (
               <>
                 <NavItem>
-                  <NavLink tag={RRNavLink} to="/login">Login</NavLink>
+                  <NavLink tag={RRNavLink} to="/login">
+                    Login
+                  </NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink tag={RRNavLink} to="/register">Register</NavLink>
+                  <NavLink tag={RRNavLink} to="/register">
+                    Register
+                  </NavLink>
                 </NavItem>
               </>
-            }
+            )}
           </Nav>
         </Collapse>
       </Navbar>

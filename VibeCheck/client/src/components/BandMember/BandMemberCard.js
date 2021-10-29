@@ -9,25 +9,25 @@ import {
   CardSubtitle,
   Button,
 } from "reactstrap";
-import "./Band.css";
+import "./BandMember.css";
 
-export const BandCard = ({ band }) => {
+export const BandMemberCard = ({ bandMember }) => {
   const history = useHistory();
 
   const handleDetails = () => {
-    history.push(`/band/detail/${band.id}`);
+    history.push(`/bandMember/detail/${bandMember.id}`);
   };
 
   return (
     <>
-      <div className="band-card-container">
-        <Card className="band-card">
+      <div className="bandMember-card-container">
+        <Card className="bandMember-card">
           <CardBody>
             <div className="card-subtitle">
-              <CardTitle tag="h5">{band.name}</CardTitle>
+              <CardTitle tag="h5">{bandMember.user.name}</CardTitle>
             </div>
-            <div className="band-buttons">
-              <Button className="Band-btn" onClick={handleDetails}>
+            <div className="bandMember-buttons">
+              <Button className="BandMember-btn" onClick={handleDetails}>
                 View Details
               </Button>
             </div>

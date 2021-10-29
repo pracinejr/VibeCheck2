@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router";
 import "./Connection.css";
-import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
+import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import {
   getConnectionsById,
   getConnectionsByUserId,
@@ -28,7 +28,6 @@ export const ConnectionForm = () => {
   const [users, setUsers] = useState([]);
   const [venues, setVenues] = useState([]);
   const [user, setUser] = useState({});
-  // const [ didSubmit, setDidSubmit ] = useState(false);
 
   const handleCancel = () => {
     history.push("/connection");

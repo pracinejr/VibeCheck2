@@ -13,7 +13,6 @@ import "./Connection.css";
 import firebase from "firebase";
 
 export const ConnectionCard = ({ connection }) => {
-  const [date] = connection.dateCreated.split("T");
   const history = useHistory();
 
   const handleDetails = () => {

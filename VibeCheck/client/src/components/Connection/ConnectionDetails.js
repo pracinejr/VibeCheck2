@@ -50,12 +50,15 @@ export const ConnectionDetails = () => {
                       className="connection-mutual-friend"
                       src={connection?.mutualFriend.imageLocation}
                       alt="mutual fiend image"
-                      roundedCircle
                     />
                     Mutual friend: {connection?.mutualFriend.name}
                   </li>
-                  <li>Where you met this connection: {connection?.venue.name}</li>
-                  <li>Date Connection was created: {connection?.dateCreated}</li>
+                  <li>
+                    Where you met this connection: {connection?.venue.name}
+                  </li>
+                  <li>
+                    Date Connection was created: {connection?.dateCreated}
+                  </li>
                 </ul>
                 <CardText>Notes: {connection?.notes}</CardText>
               </CardSubtitle>

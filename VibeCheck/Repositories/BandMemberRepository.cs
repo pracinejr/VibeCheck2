@@ -56,7 +56,7 @@ namespace VibeCheck.Repositories
                                         JOIN [user] u ON u.id = bm.userId
                                         JOIN band b ON b.id = bm.bandId
                                         WHERE b.id = @Id";
-
+                    DbUtils.AddParameter(cmd, "@Id", id);
                     var bandMembers = new List<BandMember>();
 
                     var reader = cmd.ExecuteReader();

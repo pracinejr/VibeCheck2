@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "reactstrap";
-import { useHistory, useParams } from "react-router";
+import { useHistory } from "react-router";
 import "./Connection.css";
-import { getUsersByFirebaseUserId } from "../../modules/UserManager";
 import { getConnectionsByUserId } from "../../modules/ConnectionManager.js";
 import { ConnectionCard } from "./ConnectionCard";
-import { Link } from "react-router-dom";
 
 export const ConnectionList = () => {
   const history = useHistory();
-  const { connectionId } = useParams();
   const [connections, setConnections] = useState([]);
   const [currentLocation, setCurrentLocation] = useState("");
-  // const user = firebase.auth().currentUser
 
   const getConnections = () => {
     getConnectionsByUserId().then((connections) => setConnections(connections));
+  };
+
+  const handleNewConnection = () => {
+    history.push("/connection/create");
   };
 
   const location = history.location.pathname;
@@ -27,7 +27,9 @@ export const ConnectionList = () => {
   return (
     <div className="connection-container">
       <div>
-        <Link to="/connection/create">New Connection</Link>
+        <Button className="connection-btn" onClick={handleNewConnection}>
+          Add a New Connection
+        </Button>
       </div>
       <div>
         {connections.map((connection) => {

@@ -1,62 +1,61 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router";
-import "./Band.css";
+import "./BandMember.css";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import {
-  getBandById,
-  addBand,
-  updateBand,
-} from "../../modules/BandManager";
+  getBandMemberById,
+  addBandMember,
+  updateBandMember,
+} from "../../modules/BandMemberManager";
 import { getAllUsers } from "../../modules/UserManager";
 import { getUsersByFirebaseUserId } from "../../modules/UserManager";
 import firebase from "firebase";
 
-export const BandForm = () => {
+export const BandMemberForm = () => {
   const history = useHistory();
   const { id } = useParams();
-  const [band, setBand] = useState({
-    name: "",
+  const [bandMember, setBandMember] = useState({
+    userId: "",
+    bandId: "",
   });
   const userFirebaseId = firebase.auth().currentUser.uid;
   const [user, setUser] = useState({});
 
   const handleCancel = () => {
-    history.push("/band");
+    history.push("/bandMember");
   };
 
   const handleControlledInputChange = (event) => {
     event.preventDefault();
-    const newBand = { ...band };
-    newBand[event.target.id] = event.target.value;
-    setBand(newBand);
+    const newBandMember = { ...bandMember };
+    newBandMember[event.target.id] = event.target.value;
+    setBandMember(newBandMember);
   };
 
   useEffect(() => {
     getUsersByFirebaseUserId(userFirebaseId).then(setUser);
     getAllUsers().then(setUser);
     if (id) {
-      getBandById(id).then(setBand);
+      getBandMemberById(id).then(setBandMember);
     }
   }, []);
 
-  const handleSaveBand = () => {
+  const handleSaveBandMember = () => {
     if (id) {
-      updateBand({
-        bandId: id,
-        bandName: band.name,
-      }).then(history.push(`/band/detail/${id}`));
+      updateBandMember({
+        userId: bandMember.userId,
+      }).then(history.push(`/bandMember/detail/${id}`));
     } else {
-      addBand({
-        bandId: id,
-        bandName: band.name,
+      addBandMember({
+        userId: bandMember.userId,
       }).then(history.push("/band"));
     }
   };
 
   return (
     <>
-      <Form className="new-Band-form">
-        {id ? <h1>Update Band</h1> : <h1>Add New Band</h1>}
+      <Form className="new-BandMember-form">
+        {id ? <h1>Update BandMember</h1> : <h1>Add New BandMember</h1>}
         <FormGroup>
           <Label for="name">Name</Label>
           <Input
@@ -64,20 +63,20 @@ export const BandForm = () => {
             type="text"
             name="name"
             onChange={handleControlledInputChange}
-            value={band.name}
+            value={bandMember.name}
           />
         </FormGroup>
-        <FormGroup className="Band-buttons">
+        <FormGroup className="BandMember-buttons">
           {id ? (
-            <Button className="Band-btn" onClick={handleSaveBand}>
-              Update Band
+            <Button className="BandMember-btn" onClick={handleSaveBandMember}>
+              Update BandMember
             </Button>
           ) : (
-            <Button className="Band-btn" onClick={handleSaveBand}>
-              Add Band
+            <Button className="BandMember-btn" onClick={handleSaveBandMember}>
+              Add BandMember
             </Button>
           )}
-          <Button className="Band-btn" onClick={handleCancel}>
+          <Button className="BandMember-btn" onClick={handleCancel}>
             Cancel
           </Button>
         </FormGroup>

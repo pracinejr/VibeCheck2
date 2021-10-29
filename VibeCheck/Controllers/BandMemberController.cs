@@ -33,10 +33,10 @@ namespace VibeCheck.Controllers
         }
 
 
-        [HttpGet("{id}")]
+        [HttpGet("GetAllBandMembers/{id}")]
         public IActionResult Get(int id)
         {
-            var bandMembers = _bandMemberRepo.GetBandMemberByBandId(id);
+            List<BandMember> bandMembers = _bandMemberRepo.GetBandMemberByBandId(id);
             if (bandMembers != null)
             {
                 NotFound();

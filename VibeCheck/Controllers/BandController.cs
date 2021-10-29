@@ -20,7 +20,7 @@ namespace VibeCheck.Controllers
             _bandRepo = bandRepository;
         }
 
-        [HttpGet]
+        [HttpGet("GetAllBands")]
         public IActionResult Get()
         {
             return Ok(_bandRepo.GetAllBands());

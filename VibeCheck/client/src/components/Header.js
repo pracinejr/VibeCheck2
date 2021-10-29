@@ -33,6 +33,7 @@ export default function Header({ isLoggedIn }) {
               </NavItem>
             )}
           </Nav>
+
           <Nav className="mr-auto" navbar>
             {isLoggedIn && (
               <NavItem>
@@ -42,28 +43,31 @@ export default function Header({ isLoggedIn }) {
               </NavItem>
             )}
           </Nav>
+
           <Nav className="mr-auto" navbar>
             {isLoggedIn && (
               <NavItem>
-                <NavLink tag={RRNavLink} to="/bands">
+                <NavLink tag={RRNavLink} to="/band">
                   Bands
                 </NavLink>
               </NavItem>
             )}
           </Nav>
+
           <Nav className="mr-auto" navbar>
             {isLoggedIn && (
               <NavItem>
-                <NavLink tag={RRNavLink} to="/venues">
+                <NavLink tag={RRNavLink} to="/venue">
                   Venues
                 </NavLink>
               </NavItem>
             )}
           </Nav>
+
           <Nav className="mr-auto" navbar>
             {isLoggedIn && (
               <NavItem>
-                <NavLink tag={RRNavLink} to="/users" exact>
+                <NavLink tag={RRNavLink} to="/user" exact>
                   Users
                 </NavLink>
               </NavItem>

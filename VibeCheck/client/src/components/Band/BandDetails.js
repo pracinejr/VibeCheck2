@@ -13,12 +13,19 @@ export const BandDetails = () => {
     history.push(`/band/edit/${band.id}`);
   };
 
+  const [toggleBandMembers, setToggleBandMembers] = useState(false);
+
+  const handleToggleBandMembers = () => {
+    setToggleBandMembers(!toggleBandMembers);
+  };
+
   const handleDelete = (event) => {
     event.preventDefault();
     const confirmDelete = window.confirm(
       "Are you sure you would like to delete this band? All band members will be deleted from this bad if you delete it."
     );
     if (confirmDelete) {
+      console.log(band);
       deleteBand(band.id).then(() => {
         history.push(`/band`);
       });
@@ -33,7 +40,7 @@ export const BandDetails = () => {
     getBandById(parseInt(id)).then((c) => {
       setBand(c);
     });
-  }, []);
+  }, [toggleBandMembers]);
 
   return (
     <>
@@ -43,7 +50,10 @@ export const BandDetails = () => {
             <div className="band-detail-info">
               <CardTitle tag="h2">{band?.name}</CardTitle>
               <CardSubtitle tag="h4">
-                <BandMemberList id={id} />
+                <BandMemberList
+                  id={id}
+                  handleToggleBandMembers={handleToggleBandMembers}
+                />
               </CardSubtitle>
             </div>
           </CardBody>

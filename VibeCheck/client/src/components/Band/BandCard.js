@@ -1,14 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router";
-import {
-  Card,
-  CardImg,
-  CardText,
-  CardBody,
-  CardTitle,
-  CardSubtitle,
-  Button,
-} from "reactstrap";
+import { Card, CardBody, CardTitle, Button } from "reactstrap";
 import "./Band.css";
 
 export const BandCard = ({ band }) => {

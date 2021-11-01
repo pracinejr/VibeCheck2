@@ -10,6 +10,8 @@ import { BandList } from "./Band/BandList";
 import { BandDetails } from "./Band/BandDetails";
 import { BandMemberForm } from "./BandMember/BandMemberForm";
 import { BandForm } from "./Band/BandForm";
+import { VenueList } from "./Venue/VenueList";
+import { VenueForm } from "./Venue/VenueForm";
 
 export default function ApplicationViews({ isLoggedIn }) {
   return (
@@ -53,6 +55,18 @@ export default function ApplicationViews({ isLoggedIn }) {
 
         <Route path="/bandMember/create/:bandId">
           {isLoggedIn ? <BandMemberForm /> : <Redirect to="/login" />}
+        </Route>
+
+        <Route path="/venue" exact>
+          {isLoggedIn ? <VenueList /> : <Redirect to="/login" />}
+        </Route>
+
+        <Route path="/venue/create" exact>
+          {isLoggedIn ? <VenueForm /> : <Redirect to="/login" />}
+        </Route>
+
+        <Route path="/venue/edit/:venueId" exact>
+          {isLoggedIn ? <VenueForm /> : <Redirect to="/login" />}
         </Route>
 
         <Route path="/login">

@@ -2,20 +2,17 @@ import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router";
 import "./Band.css";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
-import {
-  getBandById,
-  addBand,
-  updateBand,
-} from "../../modules/BandManager";
+import { getBandById, addBand, updateBand } from "../../modules/BandManager";
 import { getAllUsers } from "../../modules/UserManager";
 import { getUsersByFirebaseUserId } from "../../modules/UserManager";
 import firebase from "firebase";
 
 export const BandForm = () => {
   const history = useHistory();
-  const { id } = useParams();
+  const { bandId } = useParams();
   const [band, setBand] = useState({
     name: "",
+    id: "",
   });
   const userFirebaseId = firebase.auth().currentUser.uid;
   const [user, setUser] = useState({});
@@ -33,30 +30,32 @@ export const BandForm = () => {
 
   useEffect(() => {
     getUsersByFirebaseUserId(userFirebaseId).then(setUser);
-    getAllUsers().then(setUser);
-    if (id) {
-      getBandById(id).then(setBand);
+    if (bandId) {
+      getBandById(bandId).then(setBand);
     }
   }, []);
 
   const handleSaveBand = () => {
-    if (id) {
+    if (band.name === undefined) {
+      window.alert("Please complete the form");
+    } else if (bandId) {
       updateBand({
-        bandId: id,
-        bandName: band.name,
-      }).then(history.push(`/band/detail/${id}`));
+        id: bandId,
+        name: band.name,
+      }).then(history.push(`/band/detail/${bandId}`));
     } else {
-      addBand({
-        bandId: id,
-        bandName: band.name,
-      }).then(history.push("/band"));
+      const newBand = {
+        // bandId: band.id,
+        name: band.name,
+      };
+      addBand(newBand).then(history.push(`/band`));
     }
   };
 
   return (
     <>
       <Form className="new-Band-form">
-        {id ? <h1>Update Band</h1> : <h1>Add New Band</h1>}
+        {bandId ? <h1>Update Band</h1> : <h1>Add New Band</h1>}
         <FormGroup>
           <Label for="name">Name</Label>
           <Input
@@ -68,7 +67,7 @@ export const BandForm = () => {
           />
         </FormGroup>
         <FormGroup className="Band-buttons">
-          {id ? (
+          {bandId ? (
             <Button className="Band-btn" onClick={handleSaveBand}>
               Update Band
             </Button>

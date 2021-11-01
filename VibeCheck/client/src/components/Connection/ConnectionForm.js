@@ -55,17 +55,17 @@ export const ConnectionForm = () => {
       updateConnection({
         userId: connection.userId,
         venueId: connection.venueId,
-        mutualFriendId: parseInt(connection.mutualFriendId),
-        acquaintanceId: parseInt(connection.acquaintanceId),
+        mutualFriendId: connection.mutualFriendId,
+        acquaintanceId: connection.acquaintanceId,
         notes: connection.notes,
-        id: parseInt(connection.id),
+        id: connection.id,
       }).then(history.push(`/connection/detail/${id}`));
     } else {
       addConnection({
-        userId: user.id,
-        venueId: parseInt(connection.venueId),
-        mutualFriendId: parseInt(connection.mutualFriendId),
-        acquaintanceId: parseInt(connection.acquaintanceId),
+        userId: connection.userId,
+        venueId: connection.venueId,
+        mutualFriendId: connection.mutualFriendId,
+        acquaintanceId: connection.acquaintanceId,
         notes: connection.notes,
       }).then(history.push("/connection"));
     }
@@ -99,7 +99,9 @@ export const ConnectionForm = () => {
                   name="mutualFriend"
                   value={user.id}
                   onChange={handleControlledInputChange}
-                  selected={connection.mutualFriendId == user.id ? true : false}
+                  selected={
+                    connection.mutualFriendId === user.id ? true : false
+                  }
                 >
                   {user.name}
                 </option>
@@ -132,7 +134,9 @@ export const ConnectionForm = () => {
                   name="AcquaintanceOption"
                   value={user.id}
                   onChange={handleControlledInputChange}
-                  selected={connection.acquaintanceId == user.id ? true : false}
+                  selected={
+                    connection.acquaintanceId === user.id ? true : false
+                  }
                 >
                   {user.name}
                 </option>
@@ -165,7 +169,7 @@ export const ConnectionForm = () => {
                   name="venue"
                   value={venue.id}
                   onChange={handleControlledInputChange}
-                  selected={connection.venueId == venue.id ? true : false}
+                  selected={connection.venueId === venue.id ? true : false}
                 >
                   {venue.name}
                 </option>

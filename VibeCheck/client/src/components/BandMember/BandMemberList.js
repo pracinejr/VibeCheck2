@@ -8,7 +8,7 @@ import { BandMemberCard } from "./BandMemberCard";
 export const BandMemberList = ({ id }) => {
   const history = useHistory();
   const [bandMembers, setBandMembers] = useState([]);
-
+  const bandId = id;
   const [currentLocation, setCurrentLocation] = useState("");
 
   const getBandMembers = (id) => {
@@ -20,7 +20,7 @@ export const BandMemberList = ({ id }) => {
   const location = history.location.pathname;
 
   const handleNewBandMember = () => {
-    history.push("/bandMember/create");
+    history.push(`/bandMember/create/${bandId}`);
   };
 
   useEffect(() => {

@@ -11,15 +11,7 @@ export const getAllBandMembers = (id) => {
       headers: {
         Authorization: `Bearer ${token}`,
       },
-    }).then((resp) => {
-      if (resp.ok) {
-        return resp.json();
-      } else {
-        throw new Error(
-          "An unkown error occured.Please try to get Band Members again."
-        );
-      }
-    });
+    }).then((resp) => resp.json());
   });
 };
 
@@ -30,15 +22,7 @@ export const getBandMemberById = (id) => {
       headers: {
         Authorization: `Bearer ${token}`,
       },
-    }).then((resp) => {
-      if (resp.ok) {
-        return resp.json();
-      } else {
-        throw new Error(
-          "An unkown error occured.Please try to get the Band Member again."
-        );
-      }
-    });
+    }).then((resp) => resp.json());
   });
 };
 
@@ -51,17 +35,7 @@ export const addBandMember = (bandMember) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(bandMember),
-    }).then((resp) => {
-      if (resp.ok) {
-        return resp.json();
-      } else if (resp.status === 401) {
-        throw new Error("Unauthorized");
-      } else {
-        throw new Error(
-          "An unkown error occured.Please try to add bandMember again."
-        );
-      }
-    });
+    }).then((resp) => resp.json());
   });
 };
 
@@ -73,7 +47,6 @@ export const deleteBandMember = (id) => {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(id),
     });
   });
 };
@@ -87,16 +60,6 @@ export const updateBandMember = (bandMember) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(bandMember),
-    }).then((resp) => {
-      if (resp.ok) {
-        return resp.json();
-      } else if (resp.status === 401) {
-        throw new Error("Unauthorized");
-      } else {
-        throw new Error(
-          "An unkown error occured.Please try to get connections again."
-        );
-      }
-    });
+    }).then((resp) => getAllBandMembers());
   });
 };

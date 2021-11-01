@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router";
-import { getBandById } from "../../modules/BandManager";
+import { deleteBand, getBandById } from "../../modules/BandManager";
 import { Card, CardBody, CardTitle, CardSubtitle, Button } from "reactstrap";
 import { BandMemberList } from "../BandMember/BandMemberList";
 
@@ -13,8 +13,20 @@ export const BandDetails = () => {
     history.push(`/band/edit/${band.id}`);
   };
 
+  const handleDelete = (event) => {
+    event.preventDefault();
+    const confirmDelete = window.confirm(
+      "Are you sure you would like to delete this band? All band members will be deleted from this bad if you delete it."
+    );
+    if (confirmDelete) {
+      deleteBand(band.id).then(() => {
+        history.push(`/band`);
+      });
+    }
+  };
+
   const handleBack = () => {
-    history.push("/Band");
+    history.push("/band");
   };
 
   useEffect(() => {
@@ -31,12 +43,15 @@ export const BandDetails = () => {
             <div className="band-detail-info">
               <CardTitle tag="h2">{band?.name}</CardTitle>
               <CardSubtitle tag="h4">
-                <BandMemberList id={parseInt(id)} />
+                <BandMemberList id={id} />
               </CardSubtitle>
             </div>
           </CardBody>
           <Button className="Edit-button" onClick={handleEdit}>
             Edit Band
+          </Button>
+          <Button className="Edit-button" onClick={handleDelete}>
+            Delete Band
           </Button>
           <Button className="Back-button" onClick={handleBack}>
             Back to Bands

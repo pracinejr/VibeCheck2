@@ -65,7 +65,7 @@ namespace VibeCheck.Controllers
             return Ok(_bandRepo.GetBandById(id));
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("edit/{id}")]
         public IActionResult Put(int id, Band band)
         {
             if (id != band.Id)

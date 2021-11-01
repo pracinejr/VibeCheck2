@@ -65,18 +65,20 @@ export const addVenue = (venue) => {
   });
 };
 
-export const deleteVenue = (id) => {
-  return getToken().then((token) => {
-    return fetch(`${baseUrl}/${id}`, {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(id),
-    });
-  });
-};
+// decided not to have delete for venues as they are important to the integrity of the connections
+
+// export const deleteVenue = (id) => {
+//   return getToken().then((token) => {
+//     return fetch(`${baseUrl}/${id}`, {
+//       method: "DELETE",
+//       headers: {
+//         Authorization: `Bearer ${token}`,
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify(id),
+//     });
+//   });
+// };
 
 export const updateVenue = (venue) => {
   return getToken().then((token) => {
@@ -87,16 +89,17 @@ export const updateVenue = (venue) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(venue),
-    }).then((resp) => {
-      if (resp.ok) {
-        return resp.json();
-      } else if (resp.status === 401) {
-        throw new Error("Unauthorized");
-      } else {
-        throw new Error(
-          "An unkown error occured.Please try to get connections again."
-        );
-      }
-    });
+    }).then((resp) => getVenueById(venue.id));
+    // .then((resp) => {
+    //   if (resp.ok) {
+    //     return resp.json();
+    //   } else if (resp.status === 401) {
+    //     throw new Error("Unauthorized");
+    //   } else {
+    //     throw new Error(
+    //       "An unkown error occured.Please try to get connections again."
+    //     );
+    //   }
+    // });
   });
 };

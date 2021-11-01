@@ -9,15 +9,12 @@ export const BandMemberList = ({ id }) => {
   const history = useHistory();
   const [bandMembers, setBandMembers] = useState([]);
   const bandId = id;
-  const [currentLocation, setCurrentLocation] = useState("");
 
   const getBandMembers = (id) => {
     getAllBandMembers(parseInt(id)).then((bandMembers) =>
       setBandMembers(bandMembers)
     );
   };
-
-  const location = history.location.pathname;
 
   const handleNewBandMember = () => {
     history.push(`/bandMember/create/${bandId}`);

@@ -112,7 +112,7 @@ namespace VibeCheck.Repositories
             }
         }
 
-        public void DeleteBand(int bandId)
+        public void DeleteBand(int id)
         {
             using (SqlConnection conn = Connection)
             {
@@ -120,9 +120,9 @@ namespace VibeCheck.Repositories
 
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"DELETE FROM Band WHERE Id = @id";
+                    cmd.CommandText = @"DELETE FROM Band WHERE id = @id";
 
-                    cmd.Parameters.AddWithValue("@id", bandId);
+                    cmd.Parameters.AddWithValue("@id", id);
 
                     cmd.ExecuteNonQuery();
                 }

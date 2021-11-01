@@ -60,6 +60,7 @@ namespace VibeCheck.Repositories
                     var bandMembers = new List<BandMember>();
 
                     var reader = cmd.ExecuteReader();
+
                     while (reader.Read())
                     {
                         bandMembers.Add(NewBandMember(reader));
@@ -102,8 +103,8 @@ namespace VibeCheck.Repositories
                 {
                     cmd.CommandText = @"UPDATE BandMember
                                         SET BandId = @BandId,
-                                            UserId = @UserId,    
-                                        WHERE Id = @Id";
+                                            UserId = @UserId    
+                                        WHERE id = @Id";
 
                     DbUtils.AddParameter(cmd, "@BandId", bandMember.BandId);
                     DbUtils.AddParameter(cmd, "@UserId", bandMember.UserId);

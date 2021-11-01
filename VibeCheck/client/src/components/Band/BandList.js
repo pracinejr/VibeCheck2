@@ -11,7 +11,7 @@ export const BandList = () => {
   const [currentLocation, setCurrentLocation] = useState("");
 
   const getBands = () => {
-    getAllBands().then((Bands) => setBands(Bands));
+    getAllBands().then((bands) => setBands(bands));
   };
 
   const location = history.location.pathname;

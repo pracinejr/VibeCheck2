@@ -8,6 +8,8 @@ import { ConnectionForm } from "./Connection/ConnectionForm";
 import { ConnectionDetails } from "./Connection/ConnectionDetails";
 import { BandList } from "./Band/BandList";
 import { BandDetails } from "./Band/BandDetails";
+import { BandMemberForm } from "./BandMember/BandMemberForm";
+import { BandForm } from "./Band/BandForm";
 
 export default function ApplicationViews({ isLoggedIn }) {
   return (
@@ -37,8 +39,24 @@ export default function ApplicationViews({ isLoggedIn }) {
           {isLoggedIn ? <BandList /> : <Redirect to="/login" />}
         </Route>
 
+        <Route path="/band/create" exact>
+          {isLoggedIn ? <BandForm /> : <Redirect to="/login" />}
+        </Route>
+
+        <Route path="/band/edit/:bandId(\d+)" exact>
+          {isLoggedIn ? <BandForm /> : <Redirect to="/login" />}
+        </Route>
+
         <Route path="/band/detail/:id(\d+)">
           {isLoggedIn ? <BandDetails /> : <Redirect to="/login" />}
+        </Route>
+
+        <Route path="/bandMember/create/:bandId">
+          {isLoggedIn ? <BandMemberForm /> : <Redirect to="/login" />}
+        </Route>
+
+        <Route path="/bandMember/edit/:relationshipId(\d+)">
+          {isLoggedIn ? <BandMemberForm /> : <Redirect to="/login" />}
         </Route>
 
         <Route path="/login">

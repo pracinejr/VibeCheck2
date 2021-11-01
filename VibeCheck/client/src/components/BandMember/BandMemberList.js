@@ -25,7 +25,7 @@ export const BandMemberList = ({ id }) => {
 
   useEffect(() => {
     getBandMembers(id);
-  }, [location]);
+  }, []);
 
   return (
     <div className="bandMember-container">
@@ -33,10 +33,17 @@ export const BandMemberList = ({ id }) => {
         <Button className="BandMember-btn" onClick={handleNewBandMember}>
           Add a New BandMember
         </Button>
+        {console.log(bandMembers)}
       </div>
       <div>
         {bandMembers.map((bandMember) => {
-          return <BandMemberCard bandMember={bandMember} key={bandMember.id} />;
+          return (
+            <BandMemberCard
+              bandMember={bandMember}
+              key={bandMember.id}
+              setBandMembers={setBandMembers}
+            />
+          );
         })}
       </div>
     </div>

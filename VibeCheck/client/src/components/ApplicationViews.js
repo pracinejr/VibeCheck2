@@ -55,10 +55,6 @@ export default function ApplicationViews({ isLoggedIn }) {
           {isLoggedIn ? <BandMemberForm /> : <Redirect to="/login" />}
         </Route>
 
-        <Route path="/bandMember/edit/:relationshipId(\d+)">
-          {isLoggedIn ? <BandMemberForm /> : <Redirect to="/login" />}
-        </Route>
-
         <Route path="/login">
           <Login />
         </Route>

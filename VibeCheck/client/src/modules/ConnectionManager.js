@@ -51,17 +51,18 @@ export const addConnection = (connection) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(connection),
-    }).then((resp) => {
-      if (resp.ok) {
-        return resp.json();
-      } else if (resp.status === 401) {
-        throw new Error("Unauthorized");
-      } else {
-        throw new Error(
-          "An unknown error occurred while trying to save a new connection."
-        );
-      }
-    });
+    }).then((resp) => getConnectionsByUserId());
+    // .then((resp) => {
+    //   if (resp.ok) {
+    //     return resp.json();
+    //   } else if (resp.status === 401) {
+    //     throw new Error("Unauthorized");
+    //   } else {
+    //     throw new Error(
+    //       "An unknown error occurred while trying to save a new connection."
+    //     );
+    //   }
+    // });
   });
 };
 

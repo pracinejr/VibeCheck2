@@ -47,6 +47,7 @@ namespace VibeCheck.Controllers
             }
             else
             {
+                connection.UserId = currentUser.Id;
                 _connectionRepo.AddConnection(connection);
                 return CreatedAtAction("Get", new { id = connection.Id }, connection);
 

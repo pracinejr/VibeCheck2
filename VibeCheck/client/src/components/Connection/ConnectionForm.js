@@ -61,13 +61,13 @@ export const ConnectionForm = () => {
         id: connection.id,
       }).then(history.push(`/connection/detail/${id}`));
     } else {
-      addConnection({
-        userId: connection.userId,
+      const newConnection = {
         venueId: connection.venueId,
         mutualFriendId: connection.mutualFriendId,
         acquaintanceId: connection.acquaintanceId,
         notes: connection.notes,
-      }).then(history.push("/connection"));
+      };
+      addConnection(newConnection).then(history.push("/connection"));
     }
   };
 
@@ -78,16 +78,16 @@ export const ConnectionForm = () => {
         <FormGroup>
           <Label htmlFor="mutualFriend">Mutual Friend</Label>
           <Input
-            id="mutualFriend"
+            id="mutualFriendId"
             type="select"
             name="mutualFriend"
             onChange={handleControlledInputChange}
           >
             <option
               option
-              id="mutualFriend"
+              id="mutualFriendId"
               name="mutualFriend"
-              onChange={handleControlledInputChange}
+              // onChange={handleControlledInputChange}
             >
               {" "}
               Select a Mutual Friend{" "}
@@ -95,10 +95,10 @@ export const ConnectionForm = () => {
             {users.map((user) => {
               return (
                 <option
-                  id="mutualFriend"
+                  id="mutualFriendId"
                   name="mutualFriend"
                   value={user.id}
-                  onChange={handleControlledInputChange}
+                  // onChange={handleControlledInputChange}
                   selected={
                     connection.mutualFriendId === user.id ? true : false
                   }
@@ -107,7 +107,7 @@ export const ConnectionForm = () => {
                 </option>
               );
             })}
-            {console.log(connection, venues)}
+            {console.log(connection)}
           </Input>
         </FormGroup>
         <FormGroup>
@@ -120,9 +120,9 @@ export const ConnectionForm = () => {
           >
             <option
               option
-              id="AcquaintanceId"
+              id="acquaintanceId"
               name="AcquaintanceOption"
-              onChange={handleControlledInputChange}
+              // onChange={handleControlledInputChange}
             >
               {" "}
               Select an Acquaintance{" "}
@@ -133,7 +133,7 @@ export const ConnectionForm = () => {
                   id="acquaintanceId"
                   name="AcquaintanceOption"
                   value={user.id}
-                  onChange={handleControlledInputChange}
+                  // onChange={handleControlledInputChange}
                   selected={
                     connection.acquaintanceId === user.id ? true : false
                   }
@@ -156,7 +156,7 @@ export const ConnectionForm = () => {
               option
               id="venueId"
               name="venue"
-              onChange={handleControlledInputChange}
+              // onChange={handleControlledInputChange}
             >
               {" "}
               Select a Venue{" "}
@@ -168,7 +168,7 @@ export const ConnectionForm = () => {
                   defaultValue={connection?.venueId}
                   name="venue"
                   value={venue.id}
-                  onChange={handleControlledInputChange}
+                  // onChange={handleControlledInputChange}
                   selected={connection.venueId === venue.id ? true : false}
                 >
                   {venue.name}

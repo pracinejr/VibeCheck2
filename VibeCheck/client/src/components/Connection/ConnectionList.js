@@ -27,6 +27,7 @@ export const ConnectionList = () => {
   return (
     <div className="connection-container">
       <div>
+        <h2> Your Connections </h2>
         <Button className="connection-btn" onClick={handleNewConnection}>
           Add a New Connection
         </Button>

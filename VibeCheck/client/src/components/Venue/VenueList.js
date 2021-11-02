@@ -24,6 +24,7 @@ export const VenueList = () => {
   return (
     <div className="venue-container">
       <div>
+        <h2> All Venues </h2>
         <Button className="venue-btn" onClick={handleNewVenue}>
           Add a New Venue
         </Button>

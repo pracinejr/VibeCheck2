@@ -52,17 +52,6 @@ export const addConnection = (connection) => {
       },
       body: JSON.stringify(connection),
     }).then((resp) => getConnectionsByUserId());
-    // .then((resp) => {
-    //   if (resp.ok) {
-    //     return resp.json();
-    //   } else if (resp.status === 401) {
-    //     throw new Error("Unauthorized");
-    //   } else {
-    //     throw new Error(
-    //       "An unknown error occurred while trying to save a new connection."
-    //     );
-    //   }
-    // });
   });
 };
 
@@ -75,22 +64,26 @@ export const updateConnection = (connection) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(connection),
-    }).then(
-      (resp) =>
-        // {
-        getConnectionsByUserId()
+    }).then((resp) => getConnectionsByUserId());
+  });
+};
 
-      // if (resp.ok) {
-      //   return resp.json();
-      // } else if (resp.status === 401) {
-      //   throw new Error("Unauthorized");
-      // } else {
-      //   throw new Error(
-      //     "An unknown error occurred while trying to update this connection."
-      //   );
-      // }
-      // }
-    );
+export const searchConnections = (searchTerm) => {
+  return getToken().then((token) => {
+    return fetch(`${baseUrl}/search?q=${searchTerm}`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        throw new Error(
+          "An unknown error occurred while trying to get user Connections."
+        );
+      }
+    });
   });
 };
 

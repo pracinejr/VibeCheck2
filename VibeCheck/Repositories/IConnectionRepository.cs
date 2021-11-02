@@ -9,5 +9,6 @@ namespace VibeCheck.Repositories
         List<Connection> GetUsersConnections(int currentUser);
         void AddConnection(Connection connection);
         void UpdateConnection(Connection connection);
+        List<Connection> SearchConnections(string q, int currentUser);
     }
 }

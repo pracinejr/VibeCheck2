@@ -212,5 +212,79 @@ namespace VibeCheck.Repositories
             }
         }
 
+        public List<Connection> SearchConnections(string q, int currentUser)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"SELECT c.Id, c.UserId AS UserId, c.VenueId, c.MutualFriendId, c.AcquaintanceId,
+	                                           c.DateCreated, c.notes, mf.Id AS FriendId, mf.Name AS MutualFriendName,
+	                                           mf.email AS MutualFriendEmail, mf.ImageLocation AS MutualFriendImage,
+	                                           a.Id AS AcquaintanceId, a.Name AS AcquaintanceName, a.email
+	                                           AS AcquaintanceEmail, a.ImageLocation AS AcquaintanceImage,
+	                                           v.id, v.name AS VenueName, u.Id, u.FirebaseUserId, u.Name AS UserName, 
+                                               u.Email AS UserEmail, u.ImageLocation AS UserImage
+                                        FROM connection c
+                                        JOIN [user] mf ON c.mutualFriendId = mf.id
+                                        JOIN [user] a ON c.acquaintanceId = a.id
+                                        JOIN [user] u ON c.UserId = u.Id
+                                        JOIN venue v ON c.venueId = v.id
+                                        WHERE mf.Name LIKE @Criterion
+                                        AND u.Id = @Id";
+                    DbUtils.AddParameter(cmd, "@Id", currentUser);
+                    DbUtils.AddParameter(cmd, "@Criterion", $"%{q}%");
+
+                    var connections = new List<Connection>();
+
+                    var reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        connections.Add(new Connection()
+                        {
+                            Id = DbUtils.GetInt(reader, "Id"),
+                            VenueId = DbUtils.GetInt(reader, "VenueId"),
+                            Venue = new Venue()
+                            {
+                                Id = DbUtils.GetInt(reader, "Id"),
+                                Name = DbUtils.GetString(reader, "VenueName")
+                            },
+                            MutualFriendId = DbUtils.GetInt(reader, "MutualFriendId"),
+                            MutualFriend = new User()
+                            {
+                                Id = DbUtils.GetInt(reader, "Id"),
+                                Name = DbUtils.GetString(reader, "MutualFriendName"),
+                                Email = DbUtils.GetString(reader, "MutualFriendEmail"),
+                                ImageLocation = DbUtils.GetString(reader, "MutualFriendImage")
+                            },
+                            AcquaintanceId = DbUtils.GetInt(reader, "AcquaintanceId"),
+                            Acquaintance = new User()
+                            {
+                                Id = DbUtils.GetInt(reader, "Id"),
+                                Name = DbUtils.GetString(reader, "AcquaintanceName"),
+                                Email = DbUtils.GetString(reader, "AcquaintanceEmail"),
+                                ImageLocation = DbUtils.GetString(reader, "AcquaintanceImage")
+                            },
+                            DateCreated = DbUtils.GetDateTime(reader, "DateCreated"),
+                            Notes = DbUtils.GetString(reader, "Notes"),
+                            UserId = DbUtils.GetInt(reader, "UserId"),
+                            User = new User()
+                            {
+                                Id = DbUtils.GetInt(reader, "Id"),
+                                Name = DbUtils.GetString(reader, "UserName"),
+                                Email = DbUtils.GetString(reader, "UserEmail"),
+                                ImageLocation = DbUtils.GetString(reader, "UserImage")
+                            }
+                        });
+                    }
+                                reader.Close();
+
+                    return connections;
+
+                }
+            }
+        }
+
     }
 }

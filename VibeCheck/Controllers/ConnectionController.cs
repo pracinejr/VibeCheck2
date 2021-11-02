@@ -85,5 +85,14 @@ namespace VibeCheck.Controllers
                 return null;
             }
         }
+
+        [HttpGet("search")]
+        public IActionResult Search(string q)
+        {
+            var currentUser = GetCurrentUser();
+            return Ok(_connectionRepo.SearchConnections(q, currentUser.Id));
+        }
+
     }
 }
+

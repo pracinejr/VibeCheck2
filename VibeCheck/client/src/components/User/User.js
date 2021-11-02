@@ -1,19 +1,20 @@
 import React from "react";
 import { Card, CardBody } from "reactstrap";
-import './User.css'
+import "./User.css";
 
 const User = ({ user }) => {
-    
   return (
-      <>
-      <Card >
-      <CardBody className="userCard">
-      <div><img src={user.imageLocation} className="userimg" alt={user.name}/></div>
-          <div><h3>{user.name}</h3>      
-          <br/>
+    <>
+      <Card className="userCard">
+        <CardBody>
+          <div>
+            <img src={user.imageLocation} className="userimg" alt={user.name} />
           </div>
-      </CardBody>   
-    </Card>
+          <div>
+            <h3>{user.name}</h3>
+          </div>
+        </CardBody>
+      </Card>
     </>
   );
 };

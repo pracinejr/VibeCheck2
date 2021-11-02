@@ -1,16 +1,7 @@
 import React from "react";
-import { useHistory, useParams } from "react-router";
-import {
-  Card,
-  CardImg,
-  CardText,
-  CardBody,
-  CardTitle,
-  CardSubtitle,
-  Button,
-} from "reactstrap";
+import { useHistory } from "react-router";
+import { Card, CardImg, CardBody, CardTitle, Button } from "reactstrap";
 import "./Connection.css";
-import firebase from "firebase";
 
 export const ConnectionCard = ({ connection }) => {
   const history = useHistory();
@@ -24,6 +15,7 @@ export const ConnectionCard = ({ connection }) => {
       <div className="connection-card-container">
         <Card className="connection-card">
           <CardImg
+            className="connection-card-image"
             top
             width="100%"
             src={connection.acquaintance.imageLocation}
@@ -34,8 +26,8 @@ export const ConnectionCard = ({ connection }) => {
             <div className="card-subtitle">
               <CardTitle tag="h5">{connection.acquaintance.name}</CardTitle>
             </div>
-            <div className="Connection-buttons">
-              <Button className="Connection-btn" onClick={handleDetails}>
+            <div className="connection-buttons">
+              <Button className="connection-btn" onClick={handleDetails}>
                 View Details
               </Button>
             </div>

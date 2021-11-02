@@ -12,6 +12,7 @@ import { BandMemberForm } from "./BandMember/BandMemberForm";
 import { BandForm } from "./Band/BandForm";
 import { VenueList } from "./Venue/VenueList";
 import { VenueForm } from "./Venue/VenueForm";
+import UserList from "./User/UserList";
 
 export default function ApplicationViews({ isLoggedIn }) {
   return (
@@ -65,8 +66,12 @@ export default function ApplicationViews({ isLoggedIn }) {
           {isLoggedIn ? <VenueForm /> : <Redirect to="/login" />}
         </Route>
 
-        <Route path="/venue/edit/:venueId" exact>
+        <Route path="/venue/edit/:venueId">
           {isLoggedIn ? <VenueForm /> : <Redirect to="/login" />}
+        </Route>
+
+        <Route path="/user" exact>
+          {isLoggedIn ? <UserList /> : <Redirect to="/login" />}
         </Route>
 
         <Route path="/login">

@@ -27,6 +27,7 @@ export const BandMemberList = ({ id }) => {
   return (
     <div className="bandMember-container">
       <div>
+        <h4> Band Members: </h4>
         <Button className="BandMember-btn" onClick={handleNewBandMember}>
           Add a New BandMember
         </Button>

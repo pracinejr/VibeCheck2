@@ -27,7 +27,7 @@ export const BandList = () => {
   return (
     <div className="Band-container">
       <div>
-        <h2> All Bandss </h2>
+        <h2> All Bands </h2>
         <Button className="Band-btn" onClick={handleNewBand}>
           Add a New Band
         </Button>

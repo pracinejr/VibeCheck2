@@ -4,6 +4,7 @@ import { useHistory } from "react-router";
 import "./Connection.css";
 import { getConnectionsByUserId } from "../../modules/ConnectionManager.js";
 import { ConnectionCard } from "./ConnectionCard";
+import { ConnectionSearch } from "./ConnectionSearch";
 
 export const ConnectionList = () => {
   const history = useHistory();
@@ -28,6 +29,10 @@ export const ConnectionList = () => {
     <div className="connection-container">
       <div>
         <h2> Your Connections </h2>
+        <div>
+          {console.log(connections)}
+          <ConnectionSearch setConnections={setConnections} />
+        </div>
         <Button className="connection-btn" onClick={handleNewConnection}>
           Add a New Connection
         </Button>

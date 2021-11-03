@@ -51,4 +51,4 @@
 
 ### Venues Page
 
-![Venues Page](VibeCheck/client/Images/users-page.png)
+![Venues Page](VibeCheck/client/Images/venues-page.png)

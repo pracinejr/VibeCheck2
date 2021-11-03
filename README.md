@@ -39,7 +39,7 @@
 
 ### Connection Detail Page
 
-![Connection Detail Page](VibeCheck/client/Images/connection-details.png)
+![Connection Detail Page](VibeCheck/client/Images/connection-details-page.png)
 
 ### Bands Page
 

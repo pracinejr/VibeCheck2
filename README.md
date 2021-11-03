@@ -27,11 +27,11 @@
 
 ### Login Page
 
-![Login Page](VibeCheck/client/Images/login-page.PNG)
+![Login Page](VibeCheck/client/Images/login-page.png)
 
 ### Register Page
 
-![Register Page](VibeCheck/client/Images/register-page.PNG)
+![Register Page](VibeCheck/client/Images/register-page.png)
 
 ### Home Page
 
@@ -51,4 +51,4 @@
 
 ### Venues Page
 
-![Venues Page](VibeCheck/client/Images/users-page.PNG)
+![Venues Page](VibeCheck/client/Images/users-page.png)

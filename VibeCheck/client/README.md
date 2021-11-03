@@ -1,70 +1,54 @@
-# Getting Started with Create React App
+# VibeCheck - Fullstack
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Getting Started
 
-## Available Scripts
+1. Pull down this repo
 
-In the project directory, you can run:
+1. Run the two scripts that are in the SQL folder. These will create the VibeCheck database and add some test data.
 
-### `npm start`
+1. Then Create your own Firebase project.
+1. - Go to [Firebase](https://console.firebase.google.com/u/0/) and add a new project. You can name it whatever you want (VibeCheck is a good name)
+   - Go to the Authentication tab, click "Set up sign in method", and enable the Username and Password option.
+   - Add at least two new users in firebase. Use email addresses that you find in the UserProfile table of your SQL Server database
+   - Once firebase creates a UID for these users, copy the UID from firebase and update the `FirebaseUserId` column for the same users in your SQL Server database.
+   - Click the Gear icon in the sidebar to go to Project Settings. You'll need the information on this page for the next few steps
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1. Go to the `appSettings.Local.json.example` file. Replace the value for FirebaseProjectId with your own
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+1. Open your `client` directory in VsCode. Open the `.env.local.example` file and replace `__YOUR_API_KEY_HERE__` with your own firebase Web API Key
 
-### `npm test`
+1. Install your dependencies by running `npm install` from the same directory as your `package.json` file
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Install Cloudinary by running `npm install cloudinary` from the same directory as your `package.json` file
 
-### `npm run build`
+1. 1. Install bootstrap by running `npm install bootstrap` from the same directory as your `package.json` file
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. 1. Install axios by running `npm install axios` from the same directory as your `package.json` file
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Login Page
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![Login Page](Images/login-page.PNG)
 
-### `npm run eject`
+### Register Page
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+![Register Page](Images/register-page.PNG)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Home Page
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+![Home Page](Images/connections-page.png)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Connection Detail Page
 
-## Learn More
+![Connection Detail Page](Images/connection-details.png)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Bands Page
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+![Bands Page](Images/bands-page.png)
 
-### Code Splitting
+### Users Page
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+![Users Page](Images/users-page.png)
 
-### Analyzing the Bundle Size
+### Venues Page
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![Venues Page](Images/users-page.PNG)

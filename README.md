@@ -4,11 +4,10 @@
 
 1. Pull down this repo
 
-1. Run the two scripts that are in the SQL folder. These will create the VibeCheck database and add some test data. The database it creates is identitical to the prototype from the last MVC sprint, except now we're capturing the `FirebaseUserId` in the UserProfile table
+1. Run the two scripts that are in the SQL folder. These will create the VibeCheck database and add some test data.
 
-1. Everyone on the team should create their own Firebase project. **Each team member** should do the follow steps in the firebase console:
-
-   - Go to [Firebase](https://console.firebase.google.com/u/0/) and add a new project. You can name it whatever you want (VibeCheck is a good name)
+1. Then Create your own Firebase project.
+1. - Go to [Firebase](https://console.firebase.google.com/u/0/) and add a new project. You can name it whatever you want (VibeCheck is a good name)
    - Go to the Authentication tab, click "Set up sign in method", and enable the Username and Password option.
    - Add at least two new users in firebase. Use email addresses that you find in the UserProfile table of your SQL Server database
    - Once firebase creates a UID for these users, copy the UID from firebase and update the `FirebaseUserId` column for the same users in your SQL Server database.
@@ -16,55 +15,40 @@
 
 1. Go to the `appSettings.Local.json.example` file. Replace the value for FirebaseProjectId with your own
 
-1. Rename the `appSettings.Local.json.example` file to remove the `.example` extension. This file should now just be called `appSettings.Local.json`
-
 1. Open your `client` directory in VsCode. Open the `.env.local.example` file and replace `__YOUR_API_KEY_HERE__` with your own firebase Web API Key
-
-1. Rename the `.env.local.example` file to remove the `.example` extension. This file should now just be called `.env.local`
 
 1. Install your dependencies by running `npm install` from the same directory as your `package.json` file
 
-## Mock-Ups
+1. Install Cloudinary by running `npm install cloudinary` from the same directory as your `package.json` file
 
-The company has hired a designer and here are the mock-ups they provided.
+1. 1. Install bootstrap by running `npm install bootstrap` from the same directory as your `package.json` file
 
-> **NOTE:** Styling should **_NOT_** be prioritized over functionality. UI/UX **is** important, but it's more important that you focus on the code.
-
-> **NOTE:** (The quill logo seen in some of the mockups is provided for you inside of the images folder along with the other mock-ups to use as needed!)
-
-### Colors
-
-These are the hex codes for the colors used in the mockups
-
-* Red: `#db534b`
-* Grey: `#6c767d`
-* Black: `#343a40`
-* Green: `#5bb8a6`
+1. 1. Install axios by running `npm install axios` from the same directory as your `package.json` file
 
 ### Login Page
 
-![Login Page](Images/VibeCheck-Login.PNG)
+![Login Page](VibeCheck/client/Images/login-page.PNG)
+
+### Register Page
+
+![Register Page](VibeCheck/client/Images/register-page.PNG)
 
 ### Home Page
 
-![Home Page](Images/VibeCheck_Home.png)
+![Home Page](VibeCheck/client/Images/connections-page.png)
 
-### Explore Page
+### Connection Detail Page
 
-![Explore Page](Images/VibeCheck_Explore.png)
+![Connection Detail Page](VibeCheck/client/Images/connection-details.png)
 
-### Your Post's Page
+### Bands Page
 
-![Your Post's Page](Images/VibeCheck_MyPosts.png)
+![Bands Page](VibeCheck/client/Images/bands-page.png)
 
-### Create Post Form
+### Users Page
 
-![Create Post Form](Images/VibeCheck_CreatePost.png)
+![Users Page](VibeCheck/client/Images/users-page.png)
 
-### Post Details Page
+### Venues Page
 
-![Post Details Page](Images/VibeCheck-PostDetails.PNG)
-
-### Category List Page
-
-![Category List Page](Images/VibeCheck-Lists.PNG)
+![Venues Page](VibeCheck/client/Images/users-page.PNG)

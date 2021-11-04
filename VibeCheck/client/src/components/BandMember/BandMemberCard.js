@@ -7,10 +7,10 @@ import {
 } from "../../modules/BandMemberManager";
 import "./BandMember.css";
 
-export const BandMemberCard = ({ bandMember, setBandMembers }) => {
+export const BandMemberCard = ({ bandMember, setBandMembers, bandId }) => {
   const handleDelete = () => {
     deleteBandMember(bandMember.id).then(
-      getAllBandMembers(bandMember.bandId).then(setBandMembers)
+      getAllBandMembers(bandId).then(setBandMembers)
     );
   };
 

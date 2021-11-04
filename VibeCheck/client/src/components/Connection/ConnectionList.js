@@ -30,14 +30,13 @@ export const ConnectionList = () => {
       <div>
         <h2> Your Connections </h2>
         <div>
-          {console.log(connections)}
           <ConnectionSearch setConnections={setConnections} />
         </div>
         <Button className="connection-btn" onClick={handleNewConnection}>
           Add a New Connection
         </Button>
       </div>
-      <div>
+      <div className="connection-cards">
         {connections.map((connection) => {
           return <ConnectionCard connection={connection} key={connection.id} />;
         })}

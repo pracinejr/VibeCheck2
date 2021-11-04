@@ -1,5 +1,14 @@
+.band-cards {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .band-card {
   width: 15rem;
   margin: 8px;
   box-shadow: rgba(200, 200, 200, 0.596) 0.25rem 0.25rem 5px;
+}
+
+.Band-btn.btn.btn-secondary {
+  background-color: rgba(255, 171, 14, 0.931);
 }

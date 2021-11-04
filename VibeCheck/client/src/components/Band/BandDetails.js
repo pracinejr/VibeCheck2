@@ -25,7 +25,6 @@ export const BandDetails = () => {
       "Are you sure you would like to delete this band? All band members will be deleted from this bad if you delete it."
     );
     if (confirmDelete) {
-      console.log(band);
       deleteBand(band.id).then(() => {
         history.push(`/band`);
       });

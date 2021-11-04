@@ -107,7 +107,6 @@ export const ConnectionForm = () => {
                 </option>
               );
             })}
-            {console.log(connection)}
           </Input>
         </FormGroup>
         <FormGroup>

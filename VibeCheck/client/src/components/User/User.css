@@ -1,3 +1,8 @@
+.user-cards {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .userCard {
   width: 15rem;
   margin: 8px;

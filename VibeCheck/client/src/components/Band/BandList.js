@@ -32,7 +32,7 @@ export const BandList = () => {
           Add a New Band
         </Button>
       </div>
-      <div>
+      <div className="band-cards">
         {bands.map((band) => {
           return <BandCard band={band} key={band.id} />;
         })}

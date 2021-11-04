@@ -1,3 +1,12 @@
+.connection-cards {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* .connection-card-container {
+  flex-wrap: wrap;
+} */
+
 .connection-card {
   width: 15rem;
   margin: 8px;
@@ -13,4 +22,12 @@
   height: 100%;
   object-fit: cover;
   object-position: center;
+}
+
+.connection-card-image.card-img-top {
+  max-height: 250px;
+}
+
+.connection-btn.btn.btn-secondary {
+  background-color: rgba(255, 171, 14, 0.931);
 }

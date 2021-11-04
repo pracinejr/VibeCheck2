@@ -16,9 +16,11 @@ const UserList = () => {
   return (
     <div className="container">
       <h1>All Vibe Check Users</h1>
+      <div className="user-cards">
       {users.map((user) => (
         <User user={user} key={user.id} />
       ))}
+      </div>
     </div>
   );
 };

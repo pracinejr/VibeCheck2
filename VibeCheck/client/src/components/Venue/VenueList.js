@@ -29,7 +29,7 @@ export const VenueList = () => {
           Add a New Venue
         </Button>
       </div>
-      <div>
+      <div className="venue-cards">
         {venues.map((venue) => {
           return (
             <VenueCard venue={venue} key={venue.id} setVenues={setVenues} />
